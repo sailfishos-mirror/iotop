@@ -307,7 +307,7 @@ class ProcessInfo(DumpableObject):
     def get_cmdline(self):
         # A process may exec, so we must always reread its cmdline
         try:
-            proc_cmdline = open('/proc/%d/cmdline' % self.pid)
+            proc_cmdline = open('/proc/%d/cmdline' % self.pid, errors='replace')
             cmdline = proc_cmdline.read(4096)
         except IOError:
             return '{no such process}'
